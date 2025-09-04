@@ -10,15 +10,15 @@
                         "start_date": "2024-01-01T00:00:00",
                         "end_date": "2024-01-31T23:59:59"
                     },
-                    "services_filter": ["Amazon EC2", "Amazon RDS"],
-                    "cost_threshold": 50.00
+                    "services_filter": ["Amazon EC2"],
+                    "cost_threshold": 100.00
                 }
             }
         }
     ],
     "metadata": {
-        "actionName": "analyze_cost_trends",
-        "actionRelativePath": "get_actions.py",
+        "actionName": "identify_cost_optimization_opportunities",
+        "actionRelativePath": "create_actions.py",
         "schemaDescription": [
             "aws_access_key_id: Secret: AWS Access Key ID for authentication",
             "aws_secret_access_key: Secret: AWS Secret Access Key for authentication",

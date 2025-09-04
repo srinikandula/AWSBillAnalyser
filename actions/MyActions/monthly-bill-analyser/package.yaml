@@ -1,0 +1,54 @@
+spec-version: v2
+
+# Required: A short name for the action package
+name: MonthlyBillAnalyser
+
+# Required: A description of what's in the action package.
+description: Action package description
+
+# Package version number, recommend using semver.org
+version: 0.0.1
+
+dependencies:
+  conda-forge:
+  - python=3.11.11
+  - uv=0.6.11
+  pypi:
+  - sema4ai-actions=1.4.1
+  - pydantic=2.11.7
+  - requests=2.32.4
+
+dev-dependencies:
+  conda-forge:
+  - pytest=8.4.1
+  - types-requests=2.32.4.20250611
+  - ruff=0.12.8
+  - mypy=1.17.1
+
+dev-tasks:
+  test: pytest tests
+  lint: |
+    ruff check src tests
+    ruff format --check src tests
+  typecheck: mypy --follow-imports=silent --strict src tests
+  prettify: |
+    ruff format src tests
+
+packaging:
+  # By default, all files and folders in this directory are packaged when uploaded.
+  # Add exclusion rules below (expects glob format: https://docs.python.org/3/library/glob.html)
+  exclude:
+  - ./.git/**
+  - ./.vscode/**
+  - ./devdata/**
+  - ./output/**
+  - ./venv/**
+  - ./.venv/**
+  - ./.DS_store/**
+  - ./**/*.pyc
+  - ./**/*.zip
+  - ./**/.env
+  - ./**/__MACOSX
+  - ./**/__pycache__
+  - ./**/.git
+  - ./node_modules/**

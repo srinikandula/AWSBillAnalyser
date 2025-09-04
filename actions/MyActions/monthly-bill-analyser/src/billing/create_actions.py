@@ -1,38 +1,25 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
 from typing import List
-from sema4ai.actions import ActionError, Response, Secret, action
+from sema4ai.actions import ActionError, Response, action
 
 from .models import CostAnalysisRequest, OptimizationOpportunity
 
 
 @action(is_consequential=False)
 def identify_cost_optimization_opportunities(
-    aws_access_key_id: Secret,
-    aws_secret_access_key: Secret,
     cost_analysis_request: CostAnalysisRequest
 ) -> Response[List[OptimizationOpportunity]]:
     """
-    Identifies cost optimization opportunities based on AWS usage patterns using AWS APIs.
+    Identifies cost optimization opportunities based on AWS usage patterns.
 
     Args:
-        aws_access_key_id: AWS Access Key ID for authentication.
-        aws_secret_access_key: AWS Secret Access Key for authentication.
         cost_analysis_request: Request containing billing period and filters.
 
     Returns:
         A list of optimization opportunities with potential savings.
     """
-    # TODO: In production, use boto3 with AWS credentials to analyze actual resources
-    # import boto3
-    # ec2_client = boto3.client('ec2', 
-    #                          aws_access_key_id=aws_access_key_id.value,
-    #                          aws_secret_access_key=aws_secret_access_key.value)
-    # cloudwatch_client = boto3.client('cloudwatch', 
-    #                                 aws_access_key_id=aws_access_key_id.value,
-    #                                 aws_secret_access_key=aws_secret_access_key.value)
-    
-    # For now, simulate optimization analysis
+    # Simulate optimization analysis
     opportunities = [
         OptimizationOpportunity(
             service_name="Amazon EC2",
@@ -88,16 +75,12 @@ def identify_cost_optimization_opportunities(
 
 @action(is_consequential=False)
 def generate_cost_forecast(
-    aws_access_key_id: Secret,
-    aws_secret_access_key: Secret,
     months_ahead: int = 3
 ) -> Response[dict]:
     """
-    Generates a cost forecast based on historical AWS billing trends.
+    Generates a cost forecast based on historical trends.
 
     Args:
-        aws_access_key_id: AWS Access Key ID for authentication.
-        aws_secret_access_key: AWS Secret Access Key for authentication.
         months_ahead: Number of months to forecast (1-12).
 
     Returns:
@@ -106,13 +89,7 @@ def generate_cost_forecast(
     if months_ahead < 1 or months_ahead > 12:
         raise ActionError("Forecast period must be between 1 and 12 months")
     
-    # TODO: In production, use boto3 with AWS credentials to get historical cost data
-    # import boto3
-    # client = boto3.client('ce', 
-    #                      aws_access_key_id=aws_access_key_id.value,
-    #                      aws_secret_access_key=aws_secret_access_key.value)
-    
-    # For now, simulate forecast based on current trends
+    # Simulate forecast based on current trends
     base_cost = 1775.95
     growth_rate = 0.05  # 5% monthly growth
     

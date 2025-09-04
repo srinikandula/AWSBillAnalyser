@@ -8,35 +8,25 @@ import json
 from datetime import datetime, timedelta
 from decimal import Decimal
 from typing import List, Dict, Any
-from sema4ai.actions import ActionError, Response, Secret, action
+from sema4ai.actions import ActionError, Response, action
 
 from .models import CostAnalysisRequest, CostSummary, AWSService, BillingPeriod
 
 
 @action(is_consequential=False)
 def analyze_cost_trends(
-    aws_access_key_id: Secret,
-    aws_secret_access_key: Secret,
     cost_analysis_request: CostAnalysisRequest
 ) -> Response[CostSummary]:
     """
-    Analyzes AWS cost trends for a given billing period using AWS Cost Explorer API.
+    Analyzes AWS cost trends for a given billing period.
 
     Args:
-        aws_access_key_id: AWS Access Key ID for authentication.
-        aws_secret_access_key: AWS Secret Access Key for authentication.
         cost_analysis_request: Request containing billing period and filters.
 
     Returns:
         A comprehensive cost analysis summary.
     """
-    # TODO: In production, use boto3 with AWS credentials to connect to Cost Explorer API
-    # import boto3
-    # client = boto3.client('ce', 
-    #                      aws_access_key_id=aws_access_key_id.value,
-    #                      aws_secret_access_key=aws_secret_access_key.value)
-    
-    # For now, simulate cost analysis with mock data
+    # Simulate cost analysis (in real implementation, this would connect to AWS Cost Explorer API)
     mock_services = [
         AWSService(
             service_name="Amazon EC2",
@@ -89,17 +79,12 @@ def analyze_cost_trends(
 
 @action(is_consequential=False)
 def get_monthly_cost_breakdown(
-    aws_access_key_id: Secret,
-    aws_secret_access_key: Secret,
-    year: int, 
-    month: int
+    year: int, month: int
 ) -> Response[Dict[str, Any]]:
     """
-    Gets a detailed cost breakdown for a specific month using AWS Cost Explorer API.
+    Gets a detailed cost breakdown for a specific month.
 
     Args:
-        aws_access_key_id: AWS Access Key ID for authentication.
-        aws_secret_access_key: AWS Secret Access Key for authentication.
         year: Year for the cost analysis.
         month: Month for the cost analysis (1-12).
 
@@ -112,13 +97,7 @@ def get_monthly_cost_breakdown(
     if year < 2020 or year > datetime.now().year:
         raise ActionError(f"Year must be between 2020 and {datetime.now().year}")
     
-    # TODO: In production, use boto3 with AWS credentials to get actual cost data
-    # import boto3
-    # client = boto3.client('ce', 
-    #                      aws_access_key_id=aws_access_key_id.value,
-    #                      aws_secret_access_key=aws_secret_access_key.value)
-    
-    # For now, simulate monthly breakdown
+    # Simulate monthly breakdown
     breakdown = {
         "month": f"{year}-{month:02d}",
         "total_cost": 1775.95,

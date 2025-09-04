@@ -13,10 +13,10 @@ agent-package:
     action-packages:
     - name: MonthlyBillAnalyser
       organization: MyActions
-      version: 0.0.1
-      path: MyActions/monthlybillanalyser
       type: folder
-      whitelist: ''
+      version: 0.0.1
+      whitelist: ""
+      path: MyActions/monthly-bill-analyser
     knowledge: []
     metadata:
       mode: conversational

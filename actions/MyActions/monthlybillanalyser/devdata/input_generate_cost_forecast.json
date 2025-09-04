@@ -5,19 +5,17 @@
             "inputValue": {
                 "aws_access_key_id": "<specify-secret>",
                 "aws_secret_access_key": "<specify-secret>",
-                "year": 2024,
-                "month": 3
+                "months_ahead": 6
             }
         }
     ],
     "metadata": {
-        "actionName": "get_monthly_cost_breakdown",
-        "actionRelativePath": "get_actions.py",
+        "actionName": "generate_cost_forecast",
+        "actionRelativePath": "create_actions.py",
         "schemaDescription": [
             "aws_access_key_id: Secret: AWS Access Key ID for authentication",
-            "aws_secret_access_key: Secret: AWS Secret Access Key for authentication", 
-            "year: integer: Year for the cost analysis",
-            "month: integer: Month for the cost analysis (1-12)"
+            "aws_secret_access_key: Secret: AWS Secret Access Key for authentication",
+            "months_ahead: integer: Number of months to forecast (1-12)"
         ],
         "managedParamsSchemaDescription": {
             "aws_access_key_id": {
@@ -31,6 +29,6 @@
         },
         "inputFileVersion": "v3",
         "kind": "action",
-        "actionSignature": "action/args: 'aws_access_key_id: Secret, aws_secret_access_key: Secret, year: int, month: int'"
+        "actionSignature": "action/args: 'aws_access_key_id: Secret, aws_secret_access_key: Secret, months_ahead: int=3'"
     }
 }
