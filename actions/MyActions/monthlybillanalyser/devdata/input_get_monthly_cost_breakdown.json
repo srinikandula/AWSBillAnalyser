@@ -1,0 +1,22 @@
+{
+    "inputs": [
+        {
+            "inputName": "input-1",
+            "inputValue": {
+                "year": 2024,
+                "month": 3
+            }
+        }
+    ],
+    "metadata": {
+        "actionName": "get_monthly_cost_breakdown",
+        "actionRelativePath": "get_actions.py",
+        "schemaDescription": [
+            "year: integer: Year for the cost analysis",
+            "month: integer: Month for the cost analysis (1-12)"
+        ],
+        "inputFileVersion": "v3",
+        "kind": "action",
+        "actionSignature": "action/args: 'year: int, month: int'"
+    }
+}

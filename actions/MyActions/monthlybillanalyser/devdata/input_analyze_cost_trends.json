@@ -1,0 +1,31 @@
+{
+    "inputs": [
+        {
+            "inputName": "input-1",
+            "inputValue": {
+                "cost_analysis_request": {
+                    "billing_period": {
+                        "start_date": "2024-01-01T00:00:00",
+                        "end_date": "2024-01-31T23:59:59"
+                    },
+                    "services_filter": ["Amazon EC2", "Amazon RDS"],
+                    "cost_threshold": 50.00
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "actionName": "analyze_cost_trends",
+        "actionRelativePath": "get_actions.py",
+        "schemaDescription": [
+            "cost_analysis_request.billing_period.start_date: datetime: Start date of the billing period",
+            "cost_analysis_request.billing_period.end_date: datetime: End date of the billing period",
+            "cost_analysis_request.services_filter: array[string]: Filter by specific services",
+            "cost_analysis_request.regions_filter: array[string]: Filter by specific regions",
+            "cost_analysis_request.cost_threshold: decimal: Only show costs above this threshold"
+        ],
+        "inputFileVersion": "v3",
+        "kind": "action",
+        "actionSignature": "action/args: 'cost_analysis_request: CostAnalysisRequest'"
+    }
+}

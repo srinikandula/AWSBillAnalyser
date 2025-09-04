@@ -1,0 +1,33 @@
+agent-package:
+  spec-version: v2
+  agents:
+  - name: AWSBillAnalyser
+    description: New Agent Description
+    model:
+      provider: OpenAI
+      name: gpt-4o
+    version: 0.0.1
+    architecture: agent
+    reasoning: disabled
+    runbook: runbook.md
+    action-packages:
+    - name: MonthlyBillAnalyser
+      organization: MyActions
+      version: 0.0.1
+      path: MyActions/monthlybillanalyser
+      type: folder
+      whitelist: ''
+    knowledge: []
+    metadata:
+      mode: conversational
+  exclude:
+  - ./.git/**
+  - ./.vscode/**
+  - ./devdata/**
+  - ./output/**
+  - ./venv/**
+  - ./.venv/**
+  - ./**/.env
+  - ./**/.DS_Store
+  - ./**/*.pyc
+  - ./*.zip
